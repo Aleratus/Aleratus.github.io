@@ -1,99 +1,236 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<title>Portfolio – Avolkaz & Insomnic</title>
-<style>
-body { background:#111; color:#eee; font-family:Arial; margin:20px; }
-h2 { color:#ffcc55; }
-.details-box { background:#1a1a1a; padding:15px; border-radius:10px; margin-bottom:20px; }
-.gallery { display:flex; flex-wrap:wrap; gap:15px; }
-.gallery img { width:200px; height:200px; object-fit:cover; border-radius:8px; cursor:pointer; }
-#lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; }
-#lightbox img { max-width:90vw; max-height:90vh; }
-</style>
+    <meta charset="UTF-8">
+    <title>Avolkaz & Insomnic – Portfolio</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #eee;
+        }
+        header {
+            background: #000;
+            padding: 20px 15px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #ffcc55;
+        }
+        header p {
+            margin: 6px 0 0;
+            color: #aaa;
+            font-size: 13px;
+        }
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .artist-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 24px;
+        }
+        .artist-box h2 {
+            margin: 0 0 6px;
+            color: #ffcc55;
+        }
+        .artist-box .muted {
+            margin: 0 0 10px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        details {
+            background: #181818;
+            border-radius: 10px;
+            border: 1px solid #333;
+            margin: 8px 0 12px;
+        }
+        summary {
+            padding: 10px 14px;
+            cursor: pointer;
+            list-style: none;
+            font-size: 14px;
+        }
+        summary::marker { display:none; }
+        summary::before {
+            content: "▶";
+            display: inline-block;
+            font-size: 10px;
+            margin-right: 8px;
+            transition: transform 0.15s;
+        }
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+            padding: 0 14px 14px 14px;
+        }
+        .thumb {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid #333;
+            cursor: pointer;
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+            transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+        }
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .thumb:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.65);
+            border-color: #ffcc55;
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.9);
+            justify-content:center;
+            align-items:center;
+            z-index:9999;
+        }
+        #lightbox img {
+            max-width:90vw;
+            max-height:90vh;
+            border-radius:12px;
+            box-shadow:0 0 25px rgba(0,0,0,0.85);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 20px; }
+            .wrapper { padding: 12px; }
+            .gallery { padding: 0 10px 10px 10px; }
+        }
+    </style>
 </head>
 <body>
 
-<h2>Avolkaz – Tradiční kresba & malba</h2>
-<div class="details-box">
-  <details>
-    <summary>Realistická kresba tužkou</summary>
-    <div class="gallery">
-      <img src="plague-doctor.jpg">
-      <img src="rytir.jpg">
-    </div>
-  </details>
+<header>
+    <h1>Portfolio – Avolkaz &amp; Insomnic</h1>
+    <p>Klikni na náhled → zobrazí se velký obrázek • klikni mimo → zavře se</p>
+</header>
 
-  <details>
-    <summary>Ink ilustrace & lineart</summary>
-    <div class="gallery">
-      <img src="joker.jpg">
-      <img src="anubis-pes.jpg">
-      <img src="draci-hlava.jpg">
-    </div>
-  </details>
+<div class="wrapper">
 
-  <details>
-    <summary>Cute / chibi styl</summary>
-    <div class="gallery">
-      <img src="baby-drak.jpg">
-    </div>
-  </details>
+    <!-- AVOLKAZ -->
+    <div class="artist-box">
+        <h2>🎨 Avolkaz – Tradiční kresba &amp; malba</h2>
+        <p class="muted">
+            Všechna díla níže jsou kreslená rukou. Každý obrázek je zařazen jen do jednoho stylu,
+            aby bylo portfolio přehledné.
+        </p>
 
-  <details>
-    <summary>Plakátový / fanartový styl</summary>
-    <div class="gallery">
-      <img src="charizard-platno.jpg">
-    </div>
-  </details>
+        <details>
+            <summary>🎨 Realistická kresba tužkou</summary>
+            <div class="gallery">
+                <div class="thumb"><img src="plague-doctor.jpg" alt="Plague Doctor"></div>
+                <div class="thumb"><img src="rytir.jpg" alt="Rytíř"></div>
+            </div>
+        </details>
 
-  <details>
-    <summary>Realistická malba</summary>
-    <div class="gallery">
-      <img src="mandalorian.jpg">
-      <img src="ptak.jpg">
-    </div>
-  </details>
-</div>
+        <details>
+            <summary>🖋️ Ink ilustrace &amp; lineart</summary>
+            <div class="gallery">
+                <div class="thumb"><img src="joker.jpg" alt="Joker"></div>
+                <div class="thumb"><img src="anubis-pes.jpg" alt="Anubis pes"></div>
+                <div class="thumb"><img src="draci-hlava.jpg" alt="Dračí hlava"></div>
+            </div>
+        </details>
 
-<h2>Insomnic – Digitální tvorba</h2>
-<div class="details-box">
-  <details>
-    <summary>Cute zvířata & ilustrace</summary>
-    <div class="gallery">
-      <img src="liška.jpg">
-    </div>
-  </details>
+        <details>
+            <summary>🐉 Cute / chibi styl</summary>
+            <div class="gallery">
+                <div class="thumb"><img src="baby-drak.jpg" alt="Baby drak"></div>
+            </div>
+        </details>
 
-  <details>
-    <summary>Digitální portréty</summary>
-    <div class="gallery">
-      <img src="autoportret.jpg">
-    </div>
-  </details>
+        <details>
+            <summary>🔥 Plakátový / fanartový styl</summary>
+            <div class="gallery">
+                <div class="thumb"><img src="charizard-platno.jpg" alt="Charizard plátno"></div>
+            </div>
+        </details>
 
-  <details>
-    <summary>Adventure Time / cartoon</summary>
-    <div class="gallery">
-      <img src="zoe.png">
-      <img src="aphelios zery.jpg">
+        <details>
+            <summary>🛡️ Realistická malba &amp; tradiční techniky</summary>
+            <div class="gallery">
+                <div class="thumb"><img src="mandalorian.jpg" alt="Mandalorian"></div>
+                <div class="thumb"><img src="ptak.jpg" alt="Pták"></div>
+            </div>
+        </details>
     </div>
-  </details>
+
+    <!-- INSOMNIC -->
+    <div class="artist-box">
+        <h2>🖌️ Insomnic – Digitální tvorba</h2>
+        <p class="muted">
+            Digitální ilustrace, stylizované postavy a cute zvířata.
+        </p>
+
+        <details>
+            <summary>🦊 Cute zvířata &amp; ilustrace</summary>
+            <div class="gallery">
+                <div class="thumb"><img src="liška.jpg" alt="Liška"></div>
+            </div>
+        </details>
+
+        <details>
+            <summary>👤 Digitální portréty</summary>
+            <div class="gallery">
+                <div class="thumb"><img src="autoporret.jpg" alt="Digitální portrét"></div>
+            </div>
+        </details>
+
+        <details>
+            <summary>🎬 Adventure Time / cartoon</summary>
+            <div class="gallery">
+                <div class="thumb"><img src="zoe.png" alt="Dvě postavy"></div>
+                <div class="thumb"><img src="aphelios zery.jpg" alt="Tři postavy"></div>
+            </div>
+        </details>
+    </div>
+
 </div>
 
 <div id="lightbox" onclick="this.style.display='none'">
-  <img id="lightbox-img">
+    <img id="lightbox-img" src="">
 </div>
 
 <script>
-document.querySelectorAll(".gallery img").forEach(img=>{
-  img.addEventListener("click", ()=>{
-    document.getElementById("lightbox-img").src = img.src;
-    document.getElementById("lightbox").style.display = "flex";
-  });
+document.querySelectorAll('.thumb img').forEach(img => {
+    img.addEventListener('click', () => {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        lbImg.src = img.src;
+        lb.style.display = 'flex';
+    });
 });
 </script>
 
 </body>
 </html>
+
