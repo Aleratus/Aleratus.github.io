@@ -1,117 +1,239 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<title>Portfolio – Avolkaz</title>
-<style>
-    body { background:#111; color:#eee; font-family:Arial; margin:20px; }
-    h2 { color:#ffc655; margin-top:40px; }
+    <meta charset="UTF-8">
+    <title>Avolkaz – Tradiční kresba &amp; malba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: #f5f5f5;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
 
-    details { margin-bottom:25px; }
-    summary { cursor:pointer; font-size:18px; padding:8px; background:#1a1a1a; border-radius:5px; }
+        h1 {
+            margin: 0 0 20px;
+            font-size: 28px;
+            color: #ffcc55;
+        }
 
-    .gallery {
-        display:flex;
-        flex-wrap:wrap;
-        gap:15px;
-        margin-top:15px;
-    }
-    .gallery img {
-        width:220px;
-        height:220px;
-        object-fit:cover;
-        border-radius:8px;
-        cursor:pointer;
-        transition:0.2s;
-    }
-    .gallery img:hover { transform:scale(1.05); }
+        .section-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-    /* Lightbox */
-    #lightbox {
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,0.9);
-        align-items:center;
-        justify-content:center;
-        z-index:1000;
-    }
-    #lightbox img {
-        max-width:90%;
-        max-height:90%;
-        border-radius:10px;
-    }
-</style>
+        /* sekce Avolkaz */
+        .category {
+            background: #111;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        details {
+            background: #111;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 8px 12px;
+            font-size: 15px;
+            background: #111;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        summary::before {
+            content: "▶";
+            font-size: 11px;
+        }
+
+        details[open] summary::before {
+            content: "▼";
+        }
+
+        .gallery {
+            padding: 10px 12px 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .thumb {
+            width: 230px;
+            height: 260px;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid #333;
+            cursor: pointer;
+            flex: 0 0 auto;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* LIGHTBOX */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #lightbox img {
+            max-width: 95vw;
+            max-height: 95vh;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+        }
+
+        #lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 22px;
+            font-size: 26px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* KONTAKT */
+        .contact-box {
+            margin-top: 40px;
+            padding: 16px 18px 18px;
+            background: #111;
+            border-radius: 6px;
+            border: 1px solid #333;
+            max-width: 600px;
+        }
+
+        .contact-box h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #ffcc55;
+        }
+
+        .contact-label {
+            font-weight: 600;
+        }
+
+        a {
+            color: #ffcc55;
+        }
+
+        a:hover {
+            color: #ffe18c;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 12px;
+            }
+            .gallery {
+                justify-content: center;
+            }
+            .thumb {
+                width: 45vw;
+                height: 45vw;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<h2>Avolkaz – Tradiční kresba & malba</h2>
+<div class="section-wrapper">
+    <h1>Avolkaz – Tradiční kresba &amp; malba</h1>
 
-<!-- Realistická tužka -->
-<details>
-<summary>Realistická kresba tužkou</summary>
-<div class="gallery">
-    <img src="plague-doctor.jpg" alt="">
-    <img src="rytir.jpg" alt="">
+    <details>
+        <summary>Realistická kresba tužkou</summary>
+        <div class="gallery">
+            <div class="thumb"><img src="plague-doctor.jpg" alt="Plague doctor"></div>
+            <div class="thumb"><img src="rytir.jpg" alt="Rytíř"></div>
+        </div>
+    </details>
+
+    <details>
+        <summary>Ink ilustrace &amp; lineart</summary>
+        <div class="gallery">
+            <div class="thumb"><img src="joker.jpg" alt="Joker"></div>
+            <div class="thumb"><img src="draci-hlava.jpg" alt="Dračí hlava"></div>
+            <div class="thumb"><img src="anubis-pes.jpg" alt="Anubis pes"></div>
+        </div>
+    </details>
+
+    <details>
+        <summary>Cute / chibi styl</summary>
+        <div class="gallery">
+            <div class="thumb"><img src="baby-drak.jpg" alt="Baby drak"></div>
+        </div>
+    </details>
+
+    <details>
+        <summary>Plakátový / fanartový styl</summary>
+        <div class="gallery">
+            <div class="thumb"><img src="charizard-platno.jpg" alt="Charizard plátno"></div>
+        </div>
+    </details>
+
+    <details>
+        <summary>Realistická malba &amp; tradiční techniky</summary>
+        <div class="gallery">
+            <div class="thumb"><img src="mandalorian.jpg" alt="Mandalorian"></div>
+            <div class="thumb"><img src="ptak.jpg" alt="Pták"></div>
+        </div>
+    </details>
+
+    <!-- KONTAKTNÍ SEKCE -->
+    <div class="contact-box">
+        <h2>Kontakt &amp; objednávky</h2>
+        <p>Chceš vlastní obrázek / obraz od Avolkaze? Napiš sem:</p>
+        <p><span class="contact-label">E-mail:</span> <a href="mailto:tvuj.mail@example.com">tvuj.mail@example.com</a></p>
+        <p><span class="contact-label">Instagram:</span> <a href="https://instagram.com/tvuj_instagram" target="_blank">@tvuj_instagram</a></p>
+        <p><span class="contact-label">Discord:</span> TvojeDiscordJméno#0000</p>
+        <p style="font-size: 0.9rem; color:#aaa;">
+            Ceny a detaily se řeší individuálně podle velikosti, techniky a náročnosti motivu.
+        </p>
+    </div>
 </div>
-</details>
 
-<!-- Ink & lineart -->
-<details>
-<summary>Ink ilustrace & lineart</summary>
-<div class="gallery">
-    <img src="joker.jpg" alt="">
-    <img src="draci-hlava.jpg" alt="">
-    <img src="anubis-pes.jpg" alt="">
-</div>
-</details>
-
-<!-- Cute chibi -->
-<details>
-<summary>Cute / chibi styl</summary>
-<div class="gallery">
-    <img src="baby-drak.jpg" alt="">
-</div>
-</details>
-
-<!-- Plakátový / fanart -->
-<details>
-<summary>Plakátový / fanartový styl</summary>
-<div class="gallery">
-    <img src="charizard-platno.jpg" alt="">
-</div>
-</details>
-
-<!-- Realistická malba -->
-<details>
-<summary>Realistická malba & tradiční techniky</summary>
-<div class="gallery">
-    <img src="mandalorian.jpg" alt="">
-    <img src="ptak.jpg" alt="">
-</div>
-</details>
-
-
-<!-- Lightbox -->
+<!-- LIGHTBOX -->
 <div id="lightbox">
-    <img id="lightbox-img" src="#">
+    <div id="lightbox-close">✕</div>
+    <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
-// Lightbox
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
+    const thumbs = document.querySelectorAll('.thumb img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
 
-document.querySelectorAll(".gallery img").forEach(img => {
-    img.addEventListener("click", () => {
-        lightboxImg.src = img.src;
-        lightbox.style.display = "flex";
+    thumbs.forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightbox.style.display = 'flex';
+        });
     });
-});
 
-lightbox.addEventListener("click", () => {
-    lightbox.style.display = "none";
-});
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lightboxClose) {
+            lightbox.style.display = 'none';
+            lightboxImg.src = "";
+        }
+    });
 </script>
 
 </body>
